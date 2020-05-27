@@ -2,6 +2,7 @@ package com.admin.listen.fragment;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,7 +19,6 @@ import com.admin.listen.fragment.viewmodel.SetingViewModel;
 public class SetingFragment extends Fragment {
 
     private SetingViewModel mViewModel;
-
     public static SetingFragment newInstance() {
         return new SetingFragment();
     }
@@ -33,6 +33,7 @@ public class SetingFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(SetingViewModel.class);
+
     }
 
 }

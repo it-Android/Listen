@@ -20,11 +20,6 @@ public class Word {
     public Word() {
     }
 
-    @Ignore
-    public Word(@NonNull String word, String chineseMeaning) {
-        this.word = word;
-        this.chineseMeaning = chineseMeaning;
-    }
 
     @Ignore
     public Word(@NonNull String word, String chineseMeaning, String tag) {

@@ -6,4 +6,7 @@
 
     <color name="colorBnOn">#C72671</color>
     <color name="colorBnOff">#686868</color>
+
+    <color name="colorText1">#696969</color>
+    <color name="colorText2">#0E0E0E</color>
 </resources>
