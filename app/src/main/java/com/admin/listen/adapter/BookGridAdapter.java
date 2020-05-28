@@ -64,7 +64,6 @@ public class BookGridAdapter extends BaseAdapter {
         return convertView;
     }
     public int[] getItemSize() {
-
         return size;
     }
 

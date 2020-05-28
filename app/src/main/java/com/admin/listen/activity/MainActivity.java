@@ -16,10 +16,13 @@ import android.view.View;
 import com.admin.listen.R;
 import com.admin.listen.database.Word;
 import com.admin.listen.database.WordDao;
+import com.admin.listen.myView.DownLoadDialog;
 import com.admin.listen.myView.SelectPopupWindow;
 import com.admin.listen.utils.DbUtil;
 import com.admin.listen.utils.SyUtils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.io.ObjectOutputStream;
 
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
@@ -33,9 +36,6 @@ public class MainActivity extends AppCompatActivity {
         NavController navController= Navigation.findNavController(this,R.id.main_fragment);
         navController.addOnDestinationChangedListener(listener);
         NavigationUI.setupWithNavController(bottomNavigationView,navController);
-        WordDao author = DbUtil.init().getDatabase("author").getWordDao();
-        author.inserts(new Word("a","123","a"));
-
     }
     NavController.OnDestinationChangedListener listener=new NavController.OnDestinationChangedListener() {
         @Override
@@ -47,4 +47,5 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     };
+
 }

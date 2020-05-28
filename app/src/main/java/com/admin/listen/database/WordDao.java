@@ -16,13 +16,14 @@ import java.util.List;
  **/
 @Dao
 public interface WordDao{
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void inserts(Word... words);
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void inserts(List<Word> words);
 
     @Update
     void updata(Word... words);
+
     @Update
     void updata(List<Word> words);
 
@@ -32,13 +33,17 @@ public interface WordDao{
     void delete(List<Word> words);
     @Query("DELETE FROM Word")
     void deleteAllWords();
-    @Query("DELETE FROM Word WHERE word= :name")
+    @Query("DELETE FROM Word WHERE english= :name")
     void delete(String name);
 
     @Query("SELECT * FROM WORD")
-    LiveData<List<Word>> getAllWords();
-    @Query("SELECT * FROM WORD WHERE word= :name")
-    LiveData<Word> getWords(String name);
-    @Query("SELECT * FROM WORD WHERE word LIKE '%' || :name || '%'")
-    LiveData<List<Word>> getVagueWords(String name);
+    LiveData<List<Word>> getLiveAllWords();
+    @Query("SELECT * FROM WORD")
+    List<Word> getAllWords();
+    @Query("SELECT * FROM WORD WHERE english= :name")
+    LiveData<Word> getLiveWords(String name);
+    @Query("SELECT * FROM WORD WHERE english= :name")
+    Word getWord(String name);
+    @Query("SELECT * FROM WORD WHERE english LIKE '%' || :name || '%'")
+    LiveData<List<Word>> getLiveVagueWords(String name);
 }

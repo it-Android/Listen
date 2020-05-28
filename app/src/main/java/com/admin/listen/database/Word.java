@@ -2,8 +2,11 @@ package com.admin.listen.database;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+
+import com.admin.listen.analysis.entity.DetailedData;
+
+import java.util.List;
 
 /**
  * @作者(author)： JQ
@@ -13,42 +16,61 @@ import androidx.room.PrimaryKey;
 public class Word {
     @PrimaryKey
     @NonNull
-    private String word;
-    private String chineseMeaning;
-    private String tag;
+    private String english;//英语
+    private String chinese;//中文
+    private String phoneticSymbol;//音标
+    private String pronunciation;//发音连接
+    private String skill;//技巧
+    private String listExample;//例子
 
-    public Word() {
+    @NonNull
+    public String getEnglish() {
+        return english;
     }
 
-
-    @Ignore
-    public Word(@NonNull String word, String chineseMeaning, String tag) {
-        this.word = word;
-        this.chineseMeaning = chineseMeaning;
-        this.tag = tag;
+    public void setEnglish(@NonNull String english) {
+        this.english = english;
     }
 
-    public String getTag() {
-        return tag;
+    public String getChinese() {
+        return chinese;
     }
 
-    public void setTag(String tag) {
-        this.tag = tag;
+    public void setChinese(String chinese) {
+        this.chinese = chinese;
     }
 
-    public String getWord() {
-        return word;
+    public String getPhoneticSymbol() {
+        return phoneticSymbol;
     }
 
-    public void setWord(String word) {
-        this.word = word;
+    public void setPhoneticSymbol(String phoneticSymbol) {
+        this.phoneticSymbol = phoneticSymbol;
     }
 
-    public String getChineseMeaning() {
-        return chineseMeaning;
+    public String getPronunciation() {
+        return pronunciation;
     }
 
-    public void setChineseMeaning(String chineseMeaning) {
-        this.chineseMeaning = chineseMeaning;
+    public void setPronunciation(String pronunciation) {
+        this.pronunciation = pronunciation;
+    }
+
+    public String getSkill() {
+        return skill;
+    }
+
+    public void setSkill(String skill) {
+        this.skill = skill;
+    }
+
+    public String getListExample() {
+        return listExample;
+    }
+
+    public void setListExample(String listExample) {
+        this.listExample = listExample;
     }
 }
+
+

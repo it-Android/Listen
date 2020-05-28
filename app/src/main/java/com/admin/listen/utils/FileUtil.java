@@ -1,5 +1,8 @@
 package com.admin.listen.utils;
 
+import android.app.Activity;
+import android.content.Context;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -8,6 +11,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 /**
  * @作者(author)： JQ
@@ -58,22 +63,22 @@ public class FileUtil {
         return buffer.toString();
     }
 
-    public static boolean writeFile(String path,String name,String data){
-        File file=new File(path);
-        if(!file.exists()){
+    public static boolean writeFile(String path, String name, String data) {
+        File file = new File(path);
+        if (!file.exists()) {
             file.mkdirs();
         }
-        String filePath=file.getAbsolutePath()+File.separator+name;
-        FileWriter writer=null;
+        String filePath = file.getAbsolutePath() + File.separator + name;
+        FileWriter writer = null;
         try {
-            writer=new FileWriter(filePath);
+            writer = new FileWriter(filePath);
             writer.write(data);
             writer.flush();
             return true;
         } catch (IOException e) {
             return false;
-        }finally {
-            if(writer!=null){
+        } finally {
+            if (writer != null) {
                 try {
                     writer.close();
                 } catch (IOException e) {
@@ -83,4 +88,34 @@ public class FileUtil {
         }
     }
 
+
+    public static boolean writeSerialize(Context context, String fileName, Object obj) {
+        ObjectOutputStream objectOutputStream = null;
+        try {
+            objectOutputStream = new ObjectOutputStream(context.openFileOutput(fileName, Context.MODE_PRIVATE));
+            objectOutputStream.writeObject(obj);
+            objectOutputStream.flush();
+        } catch (IOException e) {
+            return false;
+        } finally {
+            if (objectOutputStream != null) {
+                try {
+                    objectOutputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return true;
+    }
+
+    public static Object readSerialize(Context context, String fileName) {
+        ObjectInputStream objectInputStream = null;
+        try {
+            objectInputStream = new ObjectInputStream(context.openFileInput(fileName));
+            return objectInputStream.readObject();
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }

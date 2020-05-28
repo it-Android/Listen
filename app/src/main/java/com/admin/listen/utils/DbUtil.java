@@ -44,9 +44,18 @@ public class DbUtil {
         }
     }
 
+    /**
+     * 注意 使用该类必须设置Context 最好设置为getApplicationContext()(Application层) 这样以后使用就不需要重复设置了
+     * @param context
+     * @return
+     */
     public DbUtil setContext(Context context) {
         this.context = context;
         return dbUtil;
+    }
+
+    public boolean isOk(){
+        return context!=null;
     }
 
 }
